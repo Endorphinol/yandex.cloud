@@ -1,0 +1,16 @@
+---
+- name: Устанавливаем Nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Создаём свою страницу
+  template:
+    src: index.html.j2        
+    dest: /var/www/html/index.html
+
+- name: Запускаем Nginx
+  service:
+    name: nginx
+    state: started    
+    enabled: yes      

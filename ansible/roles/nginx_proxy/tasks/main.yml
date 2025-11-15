@@ -1,0 +1,17 @@
+---
+- name: Устанавливаем Nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Настраиваем Nginx как прокси
+  template:
+    src: proxy.conf.j2
+    dest: /etc/nginx/sites-available/default
+  notify: restart nginx
+
+- name: Убеждаемся что Nginx работает
+  service:
+    name: nginx
+    state: started
+    enabled: yes

@@ -1,0 +1,13 @@
+server {
+    listen 3000;
+    
+    location / {
+        proxy_pass http://backend;
+    }
+}
+
+upstream backend {
+    {% for host in groups['backend'] %}
+    server {{ hostvars[host].ansible_default_ipv4.address }}:80;
+    {% endfor %}
+}

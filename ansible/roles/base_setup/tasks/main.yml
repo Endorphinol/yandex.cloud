@@ -1,0 +1,19 @@
+---
+- name: Меняем имя машины
+  hostname:
+    name: "{{ inventory_hostname }}"
+
+- name: Обновляем список пакетов
+  apt:
+    update_cache: yes
+
+- name: Устанавливаем нужные программы
+  apt:
+    name: 
+      - net-tools    
+      - dnsutils     
+      - wget         
+      - curl         
+      - mc           
+      - rsync        
+    state: present

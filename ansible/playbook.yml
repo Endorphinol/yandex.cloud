@@ -1,0 +1,18 @@
+---
+- name: Настройка базовой конфигурации для всех ВМ
+  hosts: all
+  become: yes
+  roles:
+    - base_setup
+
+- name: Настройка прокси Nginx
+  hosts: proxy
+  become: yes
+  roles:
+    - nginx_proxy
+
+- name: Настройка бэкенд Nginx
+  hosts: backend
+  become: yes
+  roles:
+    - nginx_backend
